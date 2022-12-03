@@ -1,0 +1,2 @@
+# Gives out CSV output 
+Get-ADUser -Filter {(Enabled -eq $True)} -Properties * | Where {($_.LastLogonDate -lt (Get-Date).AddDays(-30) -and ($_.LastLogonDate -ne $NULL))} | Select-Object Name,Givenname,lastlogondate | export-csv noLogin.csv
